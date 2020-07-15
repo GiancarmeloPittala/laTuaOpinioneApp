@@ -15,10 +15,16 @@ router
     body('pass').trim().not.isEmpty().isLength({ min: 5 })
 
   },erorrHandler,login)
-  .post('/register',[
+  .post('/register',(req,res,next) => {
+
+    console.log(req.body)
+    console.log(req.file)
+    console.log(req.params)
+    next();
+  },[
 
     body('nome').trim(),
-    body('email').trim().isEmail().custom( async email => {
+    check('email').trim().isEmail().custom( async email => {
       try {
         const user = await User.findAll({where : {email} })
 

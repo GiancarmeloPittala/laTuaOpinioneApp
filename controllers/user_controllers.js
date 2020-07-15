@@ -6,7 +6,7 @@ const
 module.exports = {
   register: async (req,res,next) => {
     const { pass, nome, username, email } = req.body;
-
+    
     try {
       const hashPass = await bcrypt.hash(pass,12);
       
