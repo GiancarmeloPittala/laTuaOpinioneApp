@@ -3,26 +3,23 @@ const
   { body, check} = require('express-validator'),
   router = express.Router({caseSensitive : true}),
   erorrHandler = require('../middlewares/erorrCheck'),
-  { register, login } = require('../controllers/user_controllers'),
-  { User } = require('../models') 
+  { register, login, me } = require('../controllers/user_controllers'),
+  { User } = require('../models'),
+  isAuth = require('../middlewares/isAuth') 
 
 
 router 
-  .post('/login', (req,res) => {
+  .post('/login',[ 
 
     body('email').trim(),
     body('username').trim(),
-    body('pass').trim().not.isEmpty().isLength({ min: 5 })
+    body('pass').trim().not().isEmpty().isLength({ min: 5 })
 
-  },erorrHandler,login)
-  .post('/register',(req,res,next) => {
+  ],erorrHandler,login)
+  .post('/register',[
 
-    console.log(req.body)
-    console.log(req.file)
-    console.log(req.params)
-    next();
-  },[
-
+    body('avatar').trim(),
+    body('avatar_type').trim().isIn(['url','base64','']).withMessage('tipo immagine consentito url o base64 '),
     body('nome').trim(),
     check('email').trim().isEmail().custom( async email => {
       try {
@@ -47,7 +44,7 @@ router
     body('pass').trim().isLength({ min: 5 })
 
   ],erorrHandler, register ) 
-
+  .get('/me', isAuth ,me)
   
 
   

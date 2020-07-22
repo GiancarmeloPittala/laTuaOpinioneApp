@@ -6,30 +6,16 @@ const
   bodyParser = require('body-parser'),
   morgan = require('morgan'),
   { sequelize } = require('./models'),
-  helmet = require('helmet'),
-  multer = require('multer');
-
-
-  const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, 'public/image')
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.fieldname + '-' + Date.now())
-    }
-  })
+  helmet = require('helmet');
 
 
 app.use(helmet());
-app.disable('x-powered-by');
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(morgan('tiny'));
-app.use(multer({storage}).single('image'));
+app.set('view engine', 'ejs');
 require('./routes')(app);
-
-
   
   app.listen(PORT, async () => {
     try {

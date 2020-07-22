@@ -1,11 +1,13 @@
 POST http://localhost:8000/api/user/register HTTP/1.1
-Content-Type: multipart/form-data
+Content-Type: application/json
 
 {
   "nome" : "a",
   "email" : "1@gmail.com",
   "username" : "a1",
-  "pass" : "12345"
+  "pass" : "12345",
+  "avatar" : "https://media.giphy.com/media/26BRqen6jfVVnwZB6/giphy-downsized.gif",
+  "avatar_type": "url"
 }
 ###
 
@@ -13,7 +15,11 @@ POST http://localhost:8000/api/user/login HTTP/1.1
 Content-Type: application/json
 
 {
-  "email" : "1@gmail.com",
   "username" : "a1",
   "pass" : "12345"
 }
+
+###
+
+GET http://localhost:8000/api/user/me HTTP/1.1
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTk0ODQ1OTc4fQ.-pShhCdyFoUs0knSAR7ZXP4tc1XpHOIlkcq8yscyt1c
