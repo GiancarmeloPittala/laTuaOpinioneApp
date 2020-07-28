@@ -46,7 +46,7 @@ module.exports = {
     
     try {
       let user = null;
-      if(username != '' && email != '' ) throw 'Inserire Email o Pass';
+      if((username && pass) || username != '' && email != '' ) throw 'Inserire Email o Pass';
 
       if(username.length > 0 )
         user = await User.findOne({ where : { username } });
@@ -55,9 +55,13 @@ module.exports = {
 
       if(!user) throw 'Nessuna corrispondenza';
 
-      const token = jwt.sign( { id: user.id }, secretTokenKey )
+      /**controllo la password */
+
+      if( ! await bcrypt.compare(pass, user.pass) ) throw 'password errata'
+
+      const token = jwt.sign( { id: user.id }, secretTokenKey, {expiresIn: '30m', issuer: user.nome} )
       
-      res.json({ token })
+      res.status(202).json({ token })
       
     } catch (error) {
       res.status(409).json({error});
@@ -68,6 +72,22 @@ module.exports = {
   },
 
   me: async ( req,res ) => {
-    res.json({msg: 's'})
+    try {
+      const {id : userId} = JSON.parse(process.user);
+      const user = await User.findOne({where : { id : userId}, attributes: ['id','nome','username','email','createdAt'], include:[
+        {
+          model: Gallery
+        }
+      ]  })
+
+      
+      console.log(user.dataValues)
+
+      res.status(200).json(user.dataValues)
+    } catch (error) {
+      res.status(409).json({error});
+      console.error(error)
+      return;  
+    }
   }
 }

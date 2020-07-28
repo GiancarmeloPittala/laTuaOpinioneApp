@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="./image/icon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./image/icon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./image/icon/favicon-16x16.png">
+  <link rel="manifest" href="./image/icon/site.webmanifest">
+  <link href="./css/tailwind.min.css" rel="stylesheet">
+  <link href="./css/style.css" rel="stylesheet">
+  <title>Login</title>
+</head>
+<body>
+  <main id="login" class="grid bg-blue-300" style="place-items: center; height: 100vh;">  
+    <section>
+      <form action="" method="post">
+        <div class="inputForm">
+          <div>
+            <span><img src="/image/svg/user.svg" alt="user"/></span>
+            <input placeholder="Nome" type="text" name="nome" id="nomeLogin">
+          </div>
+          <div>
+            <span><img src="/image/svg/man.svg" alt="user"/></span>
+            <input placeholder="username" type="text" name="username" id="usernameLogin">
+          </div>
+          <div>
+            <span><img src="/image/svg/mail.svg" alt="mail"/></span>
+            <input placeholder="email" type="email" name="email" id="emailLogin">
+          </div>
+          <div>
+            <span><img src="/image/svg/smart-key.svg" alt="key"/></span>
+            <input placeholder="pass" type="password" name="password" id="passwordLogin">
+          </div>
+          <div> 
+            <span><img src="/image/svg/photo.svg" alt="avatar"/></span>
+            <input placeholder="avatar" type="url" name="avatar" id="avatarLogin">
+          </div>
+        </div> 
+        <div class="buttonForm">
+          <input type="submit" value="Login">
+          <input type="reset" value="reset">
+        </div>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

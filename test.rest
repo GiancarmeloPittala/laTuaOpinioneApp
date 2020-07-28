@@ -15,11 +15,12 @@ POST http://localhost:8000/api/user/login HTTP/1.1
 Content-Type: application/json
 
 {
-  "username" : "a1",
+  "email" : "1@gmail.com",
   "pass" : "12345"
 }
 
 ###
 
 GET http://localhost:8000/api/user/me HTTP/1.1
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTk0ODQ1OTc4fQ.-pShhCdyFoUs0knSAR7ZXP4tc1XpHOIlkcq8yscyt1c
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTk1NTE2NDg0LCJleHAiOjE1OTU1MTgyODR9.0TMc7jT43pRpa1DmK96YSEqU90aGPPXOpOveaF-TSWk
+

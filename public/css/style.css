@@ -1,0 +1,26 @@
+#login section form{
+  background-color: white;
+}
+#login section form .inputForm{
+ 
+} 
+#login section form .inputForm > div{
+  display: flex;
+  padding: 5px 0 5px 0;
+  align-items: center;
+  border-bottom: 1px solid rgba(0,0,0,.3);
+  padding: 7px;
+}
+#login section form .inputForm > div span img{
+  width: 20px;
+  height: 20px;
+}
+#login section form .inputForm > div input{
+  margin-left: 5px;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+#login section form .buttonform{
+
+}

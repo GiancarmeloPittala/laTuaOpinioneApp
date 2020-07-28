@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Gallery = sequelize.define('Gallery', {
     immage: {
-      type: DataTypes.STRING(500),
+      type: DataTypes.BLOB,
       allowNull: false
     },
     tipoImage: {
