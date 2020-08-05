@@ -1,9 +1,9 @@
 const 
   express = require('express'),
-  { body, check} = require('express-validator'),
+  { body, check, param } = require('express-validator'),
   router = express.Router({caseSensitive : true}),
   erorrHandler = require('../middlewares/erorrCheck'),
-  { register, login, me } = require('../controllers/user_controllers'),
+  { register, login, me, edit } = require('../controllers/user_controllers'),
   { User } = require('../models'),
   isAuth = require('../middlewares/isAuth') 
 
@@ -16,6 +16,7 @@ router
     body('pass').trim().not().isEmpty().isLength({ min: 5 })
 
   ],erorrHandler,login)
+
   .post('/register',[
 
     body('avatar').trim(),
@@ -44,9 +45,15 @@ router
     body('pass').trim().isLength({ min: 5 })
 
   ],erorrHandler, register ) 
+
   .get('/me', isAuth ,me)
   
-
+  .put('/:id',isAuth ,[
+    param('id').custom( async id => {
+      console.log(await User.findByPk(id));
+      if( ! await User.findByPk(id) ) throw new Error(' Id utente non esiste ')
+    })
+  ],erorrHandler, edit)
   
   
 

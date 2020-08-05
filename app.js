@@ -24,7 +24,7 @@ require('./routes')(app);
     try {
 
       await sequelize.authenticate()
-      await sequelize.sync({alter: false, force: true})
+      await sequelize.sync({alter: false, force: false})
 
       console.log(`In ascolto su http://localhost:${PORT}\nDatabase correttamente generato `)
 

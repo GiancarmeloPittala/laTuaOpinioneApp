@@ -22,5 +22,15 @@ Content-Type: application/json
 ###
 
 GET http://localhost:8000/api/user/me HTTP/1.1
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTk1NTE2NDg0LCJleHAiOjE1OTU1MTgyODR9.0TMc7jT43pRpa1DmK96YSEqU90aGPPXOpOveaF-TSWk
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTk2NTY5Nzk4LCJleHAiOjE1OTY1NzE1OTgsImlzcyI6ImEifQ.t30Tk7ZSsjoFRVgQIc_jiBnNXoRB3-IqBAQQt4M6s1g
 
+###
+PUT http://localhost:8000/api/user/1 HTTP/1.1
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTk2NTY5Nzk4LCJleHAiOjE1OTY1NzE1OTgsImlzcyI6ImEifQ.t30Tk7ZSsjoFRVgQIc_jiBnNXoRB3-IqBAQQt4M6s1g
+Content-Type: application/json
+
+{
+  "nome": "pollo",
+  "username": "il mio username",
+  "email": "la mia nuova email"
+}
