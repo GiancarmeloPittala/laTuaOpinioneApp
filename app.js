@@ -2,7 +2,7 @@ const
   express = require('express'),
   app = express(),
   cors = require('cors'),
-  { parsed : { PORT } } = require('dotenv').config(),
+  { parsed : { PORT, NODE_ENV } } = require('dotenv').config(),
   bodyParser = require('body-parser'),
   morgan = require('morgan'),
   { sequelize } = require('./models'),
@@ -23,10 +23,10 @@ require('./routes')(app);
   app.listen(PORT, async () => {
     try {
 
-      // await sequelize.authenticate()
-      // await sequelize.sync({alter: false, force: false})
+      await sequelize.authenticate()
+      await sequelize.sync({alter: false, force: false})
 
-      console.log(`In ascolto su http://localhost:${PORT}\nDatabase correttamente generato `)
+      console.log(`In ascolto su http://localhost:${PORT}\nDatabase correttamente generato ... -> ${NODE_ENV} `)
 
     } catch (error) {
       console.error(error);
