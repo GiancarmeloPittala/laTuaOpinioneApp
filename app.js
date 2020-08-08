@@ -20,7 +20,8 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'))
 require('./routes')(app);
   
-  app.listen(PORT, async () => {
+console.log(process.env.PORT)
+  app.listen(process.env.PORT, async () => {
     try {
 
       await sequelize.authenticate()
