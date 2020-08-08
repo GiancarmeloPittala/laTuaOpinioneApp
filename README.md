@@ -1,5 +1,10 @@
 # SERVER REST
 
+### PER PETENA
+
+> Sito per le we api https://livequest.herokuapp.com/ 
+> l'elenco delle rotte le trovi più in fondo, tutte le rotte stanno sotto /api/
+
 ## Descrizione Progetto
 
 
@@ -21,7 +26,7 @@ npm i --save-dev sequelize-cli nodemon
 
 ## Configurazione base
 
-* [] Lanciare il comando git init da bash
+* [ X ] Lanciare il comando git init da bash
 * configurazione di base per il progetto
   * [ X ] .env
   * [ X ] sequelize init 
@@ -42,8 +47,8 @@ npm i --save-dev sequelize-cli nodemon
 ## Generare rotte utente
 * [ X ] /register (POST)
   * [ X ] gestire le password con crittografia
-* [] /login (POST)
-  * [] autenticazione e generazione token tecnologia jwt
-* [] /me (GET)
-* [] /:id (GET | id come parametro di ricerca)
+* [ X ] /login (POST)
+  * [ X ] autenticazione e generazione token tecnologia jwt
+* [ X ] /me (GET)
+* [ ] /:id (GET | id come parametro di ricerca)
   

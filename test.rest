@@ -3,9 +3,9 @@ Content-Type: application/json
 
 {
   "nome" : "a",
-  "email" : "12sd221@gmail.com",
-  "pass" : "12345",
-  "username" : "ad21",
+  "email" : "pippo111@gmail.com",
+  "pass" : "pippo111",
+  "username" : "pippo",
   "avatar" : "https://media.giphy.com/media/26BRqen6jfVVnwZB6/giphy-downsized.gif",
   "avatar_type": "url"
 }
