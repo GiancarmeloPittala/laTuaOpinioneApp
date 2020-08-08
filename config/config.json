@@ -30,7 +30,6 @@
     "dialectOptions": {
       "useUTC": false,
       "timezone": "Etc/GMT0"
-    },
-    "logging": false
+    }
   }
 }
