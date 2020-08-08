@@ -7,23 +7,25 @@ module.exports = (sequelize, DataTypes) => {
     },
     username: {
       type: DataTypes.STRING(50),
-      allowNull: false
+      allowNull: false,
+      unique: 'username'
     },
     email: {
       type: DataTypes.STRING(200),
-      allowNull: false
+      allowNull: false,
+      unique: 'email'
     },
     pass: {
       type: DataTypes.STRING(60),
       allowNull: false
     }
   }, {
-    indexes: [
-      {
-          unique: true,
-          fields: ['email', 'username']
-      }
-  ]
+    // indexes: [
+    //   {
+    //       unique: true,
+    //       fields: ['email', 'username']
+    //   }
+  // ]
   });
   User.associate = function({ Gallery }) {
    

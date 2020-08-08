@@ -14,7 +14,7 @@
 Creare un nuovo npm project e installare tutti i Packages necessari
 
 ```bash
-npm i --save express cors dotenv sequelize mariadb bcryptjs body-parser jsonwebtoken morgan express-validator helmet multer 
+npm i --save express cors dotenv sequelize mariadb bcryptjs body-parser jsonwebtoken morgan helmet multer express-joi-validate
 
 npm i --save-dev sequelize-cli nodemon
 ```
