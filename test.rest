@@ -22,7 +22,7 @@ Content-Type: application/json
 ###
 
 GET http://localhost:8000/api/user/me HTTP/1.1
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTk2NTY5Nzk4LCJleHAiOjE1OTY1NzE1OTgsImlzcyI6ImEifQ.t30Tk7ZSsjoFRVgQIc_jiBnNXoRB3-IqBAQQt4M6s1g
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTk2ODk0NjI0LCJleHAiOjE1OTY4OTY0MjQsImlzcyI6ImEifQ.3zf-Nu5qQNCfVs5cLyIynzUFSN8Ijb38U6PVKsyeZSI
 
 ###
 PUT http://localhost:8000/api/user/1 HTTP/1.1

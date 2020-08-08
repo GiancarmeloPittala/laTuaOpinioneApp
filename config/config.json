@@ -21,12 +21,16 @@
     "operatorsAliases": false
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql",
-    "operatorsAliases": false,
+    "username": "be526a90c96a52",
+    "password": "bbdc6253",
+    "database": "heroku_a52d7823708e330",
+    "host": "eu-cdbr-west-03.cleardb.net",
+    "dialect": "mariadb",
+    "operatorsAliases": 0,
+    "dialectOptions": {
+      "useUTC": false,
+      "timezone": "Etc/GMT0"
+    },
     "logging": false
   }
 }
