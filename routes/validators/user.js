@@ -18,6 +18,16 @@ module.exports = {
       , avatar: Joi.string().normalize().trim()
       , avatar_type: Joi.string().normalize().trim() 
     }
+  },
+  editValidator: {
+    body:{
+      nome: Joi.string().normalize()
+      , email: Joi.string().normalize().trim().email()
+      , username: Joi.string().normalize()
+      , pass: Joi.string().normalize().trim().min(4)
+      , avatar: Joi.string().normalize().trim()
+      , avatar_type: Joi.string().normalize().trim() 
+    }
   }
 
 }

@@ -9,7 +9,6 @@ module.exports = async (req,res,next) => {
 
     const jwt = token.split(" ")[1];
 
-    
     const jwt_verificato = JWT.verify(jwt,secretTokenKey);
 
     process.user = JSON.stringify({id : jwt_verificato.id })

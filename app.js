@@ -2,13 +2,14 @@ const
   express = require('express'),
   app = express(),
   cors = require('cors'),
-  { parsed : { PORT, NODE_ENV } } = require('dotenv').config(),
+  end = require('dotenv').config(),
   bodyParser = require('body-parser'),
   morgan = require('morgan'),
   { sequelize } = require('./models'),
   helmet = require('helmet'),
   fs = require('fs'),
-  path = require('path');
+  path = require('path'),
+  { PORT, NODE_ENV } = process.env;
 
 
 app.use(helmet());
@@ -20,7 +21,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'))
 require('./routes')(app);
   
-app.listen(process.env.PORT, async () => {
+app.listen(PORT, async () => {
     try {
 
       await sequelize.authenticate()

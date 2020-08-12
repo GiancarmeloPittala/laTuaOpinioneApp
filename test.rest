@@ -15,22 +15,28 @@ POST http://localhost:8000/api/user/login HTTP/1.1
 Content-Type: application/json
 
 {
- "email" : "12sd221@gmail.com",
-  "pass" : "12345"
+ "email" : "nuovamail@gmail.com",
+  "pass" : "pippo111"
 }
 
 ###
 
 GET http://localhost:8000/api/user/me HTTP/1.1
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTk2ODk0NjI0LCJleHAiOjE1OTY4OTY0MjQsImlzcyI6ImEifQ.3zf-Nu5qQNCfVs5cLyIynzUFSN8Ijb38U6PVKsyeZSI
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTk3MjQ0NTk5LCJleHAiOjE1OTcyNDYzOTksImlzcyI6ImEifQ.mq5HbNqHoYTVVasWYRWWz2yGYeZO_a3l55BwTBL9vGg
 
 ###
-PUT http://localhost:8000/api/user/1 HTTP/1.1
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTk2NTY5Nzk4LCJleHAiOjE1OTY1NzE1OTgsImlzcyI6ImEifQ.t30Tk7ZSsjoFRVgQIc_jiBnNXoRB3-IqBAQQt4M6s1g
+PUT http://localhost:8000/api/user/me HTTP/1.1
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTk3MjQ0NTk5LCJleHAiOjE1OTcyNDYzOTksImlzcyI6ImEifQ.mq5HbNqHoYTVVasWYRWWz2yGYeZO_a3l55BwTBL9vGg
 Content-Type: application/json
 
 {
-  "nome": "pollo",
+  "nome": "pollo modificato",
   "username": "il mio username",
-  "email": "la mia nuova email"
+  "email": "nuovamail@gmail.com"
 }
+
+
+###
+
+DELETE http://localhost:8000/api/user/me HTTP/1.1
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTk3MjQ0NTk5LCJleHAiOjE1OTcyNDYzOTksImlzcyI6ImEifQ.mq5HbNqHoYTVVasWYRWWz2yGYeZO_a3l55BwTBL9vGg

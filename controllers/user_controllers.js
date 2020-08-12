@@ -31,7 +31,6 @@ module.exports = {
 
   login: async ( req,res ) => {
 
-    console.log(req.body)
     const { email, pass } = req.body;
 
     try {
@@ -71,36 +70,26 @@ module.exports = {
   },
 
   edit: async ( req,res ) => {
-    const { nome, username, email, pass } = req.body;
-    const { id } = req.params;
-
     try {
-      
-      const user = await User.findByPk(id);
-      
-      let newUser = {};
-      newUser.nome = nome != undefined ? nome : user.dataValues.nome;
-      newUser.username = username != undefined ? username : user.dataValues.username;
-      newUser.email = email != undefined ? email : user.dataValues.email;
-  
-      if(pass != undefined){//conversione della password usando bcrypt
-        pass = bcrypt.hashSync(pass, 12);
-        newUser.pass = pass;
-      }
-  
-      console.log(newUser)
-      await User.update(
-        newUser
-      ,{
-        where: { id: id }
-      })
+     await userService.editUser(req.body);
+     return res.status(203).json({ msg: 'correttamente modificato' })
 
-      let desc = await User.describe();
-      return res.status(203).json({ desc })
     } catch (error) {
       res.status(409).json({error});
       console.error(error)
       return;
     }
+  },
+
+  destroy: async ( req,res) => {
+    try {
+      await userService.delete();
+      return res.status(203).json({ msg: 'Utente eliminato' })
+ 
+     } catch (error) {
+       res.status(409).json({error});
+       console.error(error)
+       return;
+     }
   }
 }

@@ -21,8 +21,31 @@ module.exports  = {
   },
 
   findByMail : email => User.findOne({where: { email }}),
+  findByPk : id => User.findByPk(id),
   findByUser : username => User.findOne({where: { username }}),
   checkPass : (pass, databasePass ) => bcrypt.compare(pass,databasePass),
-  createToken : (user) => jwt.sign( {id: user.id},  secretTokenKey, {expiresIn: '30m', issuer: user.nome} )
+  createToken : (user) => jwt.sign( {id: user.id},  secretTokenKey, {expiresIn: '30m', issuer: user.nome} ),
+  editUser : async user => { 
+    const idUser = JSON.parse(process.user).id;
+    const datiUtente = await User.findByPk(idUser);
 
+    if(!datiUtente) throw 'utente inesistente';
+
+    let { nome, username, email, pass } = user;
+    let newUser = {};
+    
+    newUser.nome = nome != undefined ? nome : datiUtente.dataValues.nome;
+    newUser.username = username != undefined ? username : datiUtente.dataValues.username;
+    newUser.email = email != undefined ? email : datiUtente.dataValues.email;
+    newUser.pass = pass != undefined ? bcrypt.hashSync(pass, 12) : datiUtente.dataValues.pass;
+
+
+    return User.update(
+      newUser
+    ,{
+      where: { id: idUser }
+    }) 
+
+  },
+  delete: () => User.destroy({where: { id : JSON.parse(process.user).id }})
 }  

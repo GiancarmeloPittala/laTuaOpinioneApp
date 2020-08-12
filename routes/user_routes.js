@@ -2,10 +2,10 @@ const
   express = require('express'),
   validate = require('express-joi-validate'),
   router = express.Router({caseSensitive : true}),
-  { register, login, me, edit } = require('../controllers/user_controllers'),
+  { register, login, me, edit, destroy } = require('../controllers/user_controllers'),
   { User } = require('../models'),
   isAuth = require('../middlewares/isAuth'),
-  { loginValidator, registerValidator } = require('./validators/user');
+  { loginValidator, registerValidator, editValidator } = require('./validators/user');
 
 router 
   .post('/login', validate( loginValidator ), login)
@@ -14,8 +14,8 @@ router
 
   .get('/me', isAuth ,me)
   
-  .put('/:id',isAuth, edit)
+  .put('/me',validate( editValidator ), isAuth, edit)
   
-  
+  .delete('/me',isAuth, destroy)
 
   module.exports = router 
