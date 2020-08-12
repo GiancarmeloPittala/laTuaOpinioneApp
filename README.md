@@ -50,5 +50,7 @@ npm i --save-dev sequelize-cli nodemon
 * [ X ] /login (POST)
   * [ X ] autenticazione e generazione token tecnologia jwt
 * [ X ] /me (GET)
+* [ X ] /me (PUT)
+* [ X ] /me (DELETE)
 * [ ] /:id (GET | id come parametro di ricerca)
   
