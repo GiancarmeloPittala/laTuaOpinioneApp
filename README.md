@@ -2,7 +2,7 @@
 
 ### PER PETENA
 
-> Sito per le we api https://livequest.herokuapp.com/ 
+> Sito per le web api https://livequest.herokuapp.com/ 
 > l'elenco delle rotte le trovi più in fondo, tutte le rotte stanno sotto /api/
 
 ## Descrizione Progetto
@@ -44,6 +44,10 @@ npm i --save-dev sequelize-cli nodemon
   * pass ( 60 char )
   * email ( unique )
 
+* [ X ] Table gallery
+  * image ( per il momento è concesso solo immagini tramite url completo )
+  * tipoImage ( può contenere: "url" o "base64", "default => "url")
+
 ## Generare rotte utente
 * [ X ] /register (POST)
   * [ X ] gestire le password con crittografia
@@ -52,5 +56,5 @@ npm i --save-dev sequelize-cli nodemon
 * [ X ] /me (GET)
 * [ X ] /me (PUT)
 * [ X ] /me (DELETE)
-* [ ] /:id (GET | id come parametro di ricerca)
+* [] /:id (GET | id come parametro di ricerca)
   

@@ -25,6 +25,7 @@ module.exports  = {
   findByUser : username => User.findOne({where: { username }}),
   checkPass : (pass, databasePass ) => bcrypt.compare(pass,databasePass),
   createToken : (user) => jwt.sign( {id: user.id},  secretTokenKey, {expiresIn: '30m', issuer: user.nome} ),
+  findAllUser: () => User.findAll({attributes: ["nome","username","email","createdAt","updatedAt"]}),
   editUser : async user => { 
     const idUser = JSON.parse(process.user).id;
     const datiUtente = await User.findByPk(idUser);
@@ -38,8 +39,7 @@ module.exports  = {
     newUser.username = username != undefined ? username : datiUtente.dataValues.username;
     newUser.email = email != undefined ? email : datiUtente.dataValues.email;
     newUser.pass = pass != undefined ? bcrypt.hashSync(pass, 12) : datiUtente.dataValues.pass;
-
-
+    
     return User.update(
       newUser
     ,{

@@ -91,5 +91,18 @@ module.exports = {
        console.error(error)
        return;
      }
+  },
+
+  getAll: async ( req, res ) => {
+    try {
+      const users = await userService.findAllUser();
+      users.forEach ( u => console.log(u))
+      return res.status(203).json({ users })
+ 
+     } catch (error) {
+       res.status(409).json({error});
+       console.error(error)
+       return;
+     }
   }
 }

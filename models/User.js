@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
   User.associate = function({ Gallery }) {
    
     User.hasMany(Gallery, { onDelete: 'cascade', onUpdate: 'cascade'});
-
+    
   };
   return User;
 };
