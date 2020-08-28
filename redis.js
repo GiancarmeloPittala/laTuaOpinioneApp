@@ -1,6 +1,6 @@
 const 
   { REDISCLOUD_URL } = process.env,
-  redis = require('redis').createClient(REDIS_URL),
+  redis = require('redis').createClient(REDISCLOUD_URL),
   { promisify } = require('util');
   const getAsync = promisify(redis.get).bind(redis);
 
