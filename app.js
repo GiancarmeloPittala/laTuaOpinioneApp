@@ -9,7 +9,9 @@ const
   helmet = require('helmet'),
   fs = require('fs'),
   path = require('path'),
-  { PORT, NODE_ENV } = process.env;
+  { PORT, NODE_ENV } = process.env,
+  redis = require ('./redis');
+
 
 
 app.use(helmet());
@@ -21,14 +23,16 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'))
 require('./routes')(app);
   
+
 app.listen(PORT, async () => {
     try {
 
       await sequelize.authenticate()
-      await sequelize.sync({alter: false, force: false})
+      await sequelize.sync({alter: false, force: true})
 
-      console.log(`In ascolto su http://localhost:${PORT}\nDatabase correttamente generato ... -> ${NODE_ENV} `)
+       console.log(`In ascolto su http://localhost:${PORT} \nDatabase correttamente generato ... -> ${NODE_ENV} `)
 
+     
     } catch (error) {
       console.error(error);
       return;

@@ -10,7 +10,7 @@
       "useUTC": false,
       "timezone": "Etc/GMT0"
     },
-    "logging": true
+    "logging": false
   },
   "test": {
     "username": "root",

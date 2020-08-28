@@ -4,6 +4,7 @@ const
   , bcrypt = require('bcryptjs')
   , jwt = require('jsonwebtoken')
   , { secretTokenKey } = process.env
+  , { redis, getAsync} = require('../redis')
 
 module.exports  = {
 
@@ -24,8 +25,15 @@ module.exports  = {
   findByPk : id => User.findByPk(id),
   findByUser : username => User.findOne({where: { username }}),
   checkPass : (pass, databasePass ) => bcrypt.compare(pass,databasePass),
-  createToken : (user) => jwt.sign( {id: user.id},  secretTokenKey, {expiresIn: '30m', issuer: user.nome} ),
-  findAllUser: () => User.findAll({attributes: ["nome","username","email","createdAt","updatedAt"]}),
+  createToken : async user => { 
+
+    const JWT = jwt.sign( {id: user.id, email: user.email},  secretTokenKey, {expiresIn: '30m', issuer: user.nome} );
+
+    redis.set(user.email, user.id )
+
+    return JWT;
+  },
+  findAllUser: (offset = 0, limit = 10) => { return User.findAll({attributes: ["nome","username","email","createdAt","updatedAt"], offset: offset, limit: limit})},
   editUser : async user => { 
     const idUser = JSON.parse(process.user).id;
     const datiUtente = await User.findByPk(idUser);
@@ -39,7 +47,7 @@ module.exports  = {
     newUser.username = username != undefined ? username : datiUtente.dataValues.username;
     newUser.email = email != undefined ? email : datiUtente.dataValues.email;
     newUser.pass = pass != undefined ? bcrypt.hashSync(pass, 12) : datiUtente.dataValues.pass;
-    
+
     return User.update(
       newUser
     ,{
@@ -47,5 +55,6 @@ module.exports  = {
     }) 
 
   },
-  delete: () => User.destroy({where: { id : JSON.parse(process.user).id }})
+  delete: () => User.destroy({where: { id : JSON.parse(process.user).id }}),
+  logout: (jwt) => redis.del(jwt)
 }  

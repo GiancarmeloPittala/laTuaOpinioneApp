@@ -31,6 +31,7 @@ module.exports = (sequelize, DataTypes) => {
    
     User.hasMany(Gallery, { onDelete: 'cascade', onUpdate: 'cascade'});
     
+    
   };
   return User;
 };

@@ -6,7 +6,8 @@ const
   jwt = require('jsonwebtoken'),
   { secretTokenKey } = process.env,
   userService = require('../services/user'),
-  galleryService = require('../services/gallery')
+  galleryService = require('../services/gallery'),
+  { } = require('../redis')
 
 module.exports = {
   register: async (req,res,next) => {
@@ -17,7 +18,8 @@ module.exports = {
       if( await userService.findByUser(username) ) throw 'username esistente';
 
       const user = await userService.create(req.body);
-      await galleryService.create({userId : user.id, avatar, avatar_type})
+      if(avatar)
+        await galleryService.create({userId : user.id, avatar, avatar_type})
 
       res.json({msg: 'Correttamente registrato'})
       
@@ -39,7 +41,7 @@ module.exports = {
       if(! user ) throw 'Email inesistente';
       if(! await userService.checkPass(pass, user.pass) ) throw 'password errata'
       
-      const token = userService.createToken(user);
+      const token = await userService.createToken(user);
       
       res.status(202).json({ token })
 
@@ -54,7 +56,11 @@ module.exports = {
   me: async ( req,res ) => {
     try {
 
+      const jwt = req.headers.authorization.split(" ")[1];
       const {id : userId} = JSON.parse(process.user);
+
+      //if(!loggato) throw 'Non sei loggato, effettua una login';
+
       const user = await User.findOne({where : { id : userId}, attributes: ['id','nome','username','email','createdAt'], include:[
         {
           model: Gallery
@@ -96,9 +102,23 @@ module.exports = {
   getAll: async ( req, res ) => {
     try {
       const users = await userService.findAllUser();
-      users.forEach ( u => console.log(u))
+      
       return res.status(203).json({ users })
  
+     } catch (error) {
+       res.status(409).json({error});
+       console.error(error)
+       return;
+     }
+  },
+
+  logout: async (req,res) => {
+    try {
+     
+      const jwt = req.headers.authorization.split(" ")[1];
+      userService.logout(jwt);
+ 
+      return res.status(203).json({ msg: 'Logout effettuato correttamente' })
      } catch (error) {
        res.status(409).json({error});
        console.error(error)

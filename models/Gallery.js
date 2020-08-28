@@ -11,7 +11,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {});
   Gallery.associate = function({ User }) {
-   Gallery.belongsTo(User,{ onDelete: 'cascade', onUpdate: 'cascade' })
+    Gallery.belongsTo(User,{ onDelete: 'cascade', onUpdate: 'cascade' });
+   
   };
   return Gallery;
 };

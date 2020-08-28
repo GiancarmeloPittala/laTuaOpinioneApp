@@ -7,6 +7,7 @@ module.exports = (app) => {
 
   app.get('*', (req,res) => {
     res.status(500).json({msg: 'rotta non trovata' })
+    //res.sendFile(path.join(__dirname+'/../README.md'))
   })
 
 };
